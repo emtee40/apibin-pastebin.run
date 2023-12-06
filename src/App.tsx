@@ -9,13 +9,13 @@ import { createHashHistory } from "history";
 import { Header } from "./components/Header";
 import { Home } from "./pages/Home";
 import { NotFound } from "./pages/_404";
-import "./style.css";
+import classes from "./style.module.css";
 import { About } from "./pages/About";
 import { Paste } from "./pages/Paste";
 
 export default function App() {
   return (
-    <div id="app">
+    <div class={classes.app}>
       <Header />
       <main>
         <Router history={createHashHistory()}>
