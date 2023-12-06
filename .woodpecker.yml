@@ -20,6 +20,7 @@ steps:
       - npx prettier --check .
       - npx eslint .
       - npx tsc
+      - npx vitest
       - npm run build
   deploy:
     image: bitnami/git
