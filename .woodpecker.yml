@@ -14,7 +14,7 @@ steps:
     commands:
       - reuse lint
   build:
-    image: "node:21"
+    image: "node:21.3"
     commands:
       - npm ci
       - npx preact build --no-prerender
