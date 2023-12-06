@@ -5,7 +5,8 @@
 // SPDX-License-Identifier: MIT
 
 import { render } from 'preact';
-import { LocationProvider, Router, Route } from 'preact-iso';
+import { Route, Router } from 'preact-router';
+import { createHashHistory } from 'history';
 import { Header } from './components/Header';
 import { Home } from './pages/Home';
 import { NotFound } from './pages/_404';
@@ -15,17 +16,17 @@ import { Paste } from './pages/Paste';
 
 export function App() {
 	return (
-		<LocationProvider>
+		<div id="app">
 			<Header />
 			<main>
-				<Router>
+				<Router history={createHashHistory()}>
 					<Route path="/" component={Home} />
 					<Route path="/about" component={About} />
 					<Route path="/:id" component={Paste} />
 					<Route default component={NotFound} />
 				</Router>
 			</main>
-		</LocationProvider>
+		</div>
 	);
 }
 

@@ -4,8 +4,8 @@
 
 import './style.css';
 import baseUrl from '../../base-url';
-import { LocationHook, useLocation } from 'preact-iso';
 import { useEffect, useState } from 'preact/hooks';
+import { route } from 'preact-router';
 
 type Language = {
 	identifier: string;
@@ -20,7 +20,7 @@ export function Home() {
 	const onLanguageChange = e => setLanguage(e.target.value);
 	const onExpirationChange = e => setExpiration(e.target.value);
 	const onTextareaChange = e => setCode(e.target.value);
-	const onSubmit = async (loc: LocationHook, e) => {
+	const onSubmit = async (e) => {
 		e.preventDefault();
 		const request = await fetch(`${baseUrl}api/v1/pastes`, {
 			body: new URLSearchParams({ code, expiration, language }),
@@ -29,14 +29,13 @@ export function Home() {
 				'Content-Type': 'application/x-www-form-urlencoded'
 			}
 		});
-		loc.route(`/${await request.text()}`);
+		route(`/${await request.text()}`);
 	}
-	const loc = useLocation();
 	useEffect(() => {
 		(async () => setLanguages(await (await fetch(`${baseUrl}api/v1/languages`)).json()))();
 	}, []);
 	return (
-		<form onSubmit={e => onSubmit(loc, e)}>
+		<form onSubmit={onSubmit}>
 			<label>
 				Language: <select value={language} onInput={onLanguageChange}>
 					{languages.map(({ identifier, name }) => <option key={identifier} value={identifier}>{name}</option>)}
