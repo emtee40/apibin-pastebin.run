@@ -14,7 +14,7 @@ steps:
     commands:
       - reuse lint
   build:
-    image: "node:21.3"
+    image: "node:21.4"
     commands:
       - npm ci
       - npx prettier --check .
