@@ -17,6 +17,7 @@ steps:
     image: "node:21.3"
     commands:
       - npm ci
+      - npx prettier --check .
       - npx eslint .
       - npx tsc
       - npm run build
