@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
- .pre {
-    background: #f5f2f0;
-    padding: 16px;
-    overflow: auto;
+.pre {
+  background: #f5f2f0;
+  padding: 16px;
+  overflow: auto;
 }
