@@ -2,18 +2,16 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-import { useLocation } from 'preact-iso';
 import './style.css';
+import { Link } from 'preact-router/match';
 
 export function Header() {
-	const { url } = useLocation();
-
 	return (
 		<header class="header">
 			<h1><a href="/">apibin</a></h1>
 			<nav>
-				<a class={url === '/' && 'active'} href="/">Home</a>
-				<a class={url === '/about' && 'active'} href="/about">About</a>
+				<Link activeClassName="active" href="/">Home</Link>
+				<Link activeClassName="active" href="/about">About</Link>
 				<a href="https://github.com/pastebinrun/apibin">Source code</a>
 			</nav>
 		</header>
