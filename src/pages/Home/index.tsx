@@ -17,10 +17,13 @@ export function Home() {
   const [expiration, setExpiration] = useState("PT1H");
   const [languages, setLanguages] = useState<Language[]>([]);
   const [language, setLanguage] = useState("plaintext");
-  const onLanguageChange = (e) => setLanguage(e.target.value);
-  const onExpirationChange = (e) => setExpiration(e.target.value);
-  const onTextareaChange = (e) => setCode(e.target.value);
-  const onSubmit = async (e) => {
+  const onLanguageChange = (e: Event) =>
+    setLanguage((e.target as HTMLSelectElement).value);
+  const onExpirationChange = (e: Event) =>
+    setExpiration((e.target as HTMLSelectElement).value);
+  const onTextareaChange = (e: Event) =>
+    setCode((e.target as HTMLTextAreaElement).value);
+  const onSubmit = async (e: Event) => {
     e.preventDefault();
     const request = await fetch(`${baseUrl}api/v1/pastes`, {
       body: new URLSearchParams({ code, expiration, language }),

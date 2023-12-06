@@ -6,9 +6,9 @@ import classes from "./style.module.css";
 import baseUrl from "../../base-url";
 import { useEffect, useState } from "preact/hooks";
 
-export function Paste({ id }) {
+export function Paste({ id }: { id: string }) {
   const [code, setCode] = useState<string | null>(null);
-  const copyLink = (e) => {
+  const copyLink = (e: Event) => {
     e.preventDefault();
     navigator.clipboard.writeText(getLink());
   };
