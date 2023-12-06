@@ -17,8 +17,9 @@ steps:
     image: "node:21.3"
     commands:
       - npm ci
-      - npx preact build --no-prerender
-      - npm test
+      - npx eslint .
+      - npx tsc
+      - npm run build
   deploy:
     image: bitnami/git
     commands:
@@ -30,7 +31,7 @@ steps:
       - git config --global user.email kamila@borowska.pw
       - git clone --single-branch --branch pages git@codeberg.org:$CI_REPO.git pages
       - cd pages
-      - cp -ar ../build/. .
+      - cp -ar ../dist/. .
       - git add .
       - git commit -m "Deploying from $CI_COMMIT_SHA" || true
       - git push
