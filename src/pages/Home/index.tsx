@@ -17,12 +17,6 @@ export function Home() {
   const [expiration, setExpiration] = useState("PT1H");
   const [languages, setLanguages] = useState<Language[]>([]);
   const [language, setLanguage] = useState("plaintext");
-  const onLanguageChange = (e: Event) =>
-    setLanguage((e.target as HTMLSelectElement).value);
-  const onExpirationChange = (e: Event) =>
-    setExpiration((e.target as HTMLSelectElement).value);
-  const onTextareaChange = (e: Event) =>
-    setCode((e.target as HTMLTextAreaElement).value);
   const onSubmit = async (e: Event) => {
     e.preventDefault();
     const request = await fetch(`${baseUrl}api/v1/pastes`, {
@@ -42,7 +36,10 @@ export function Home() {
     <form onSubmit={onSubmit}>
       <label>
         Language:{" "}
-        <select value={language} onInput={onLanguageChange}>
+        <select
+          value={language}
+          onInput={(e) => setLanguage(e.currentTarget.value)}
+        >
           {languages.map(({ identifier, name }) => (
             <option key={identifier} value={identifier}>
               {name}
@@ -52,7 +49,10 @@ export function Home() {
       </label>{" "}
       <label>
         Expires:{" "}
-        <select value={expiration} onInput={onExpirationChange}>
+        <select
+          value={expiration}
+          onInput={(e) => setExpiration(e.currentTarget.value)}
+        >
           <option value="PT1H">1 hour</option>
           <option value="P1D">1 day</option>
           <option value="P7D">1 week</option>
@@ -62,7 +62,11 @@ export function Home() {
       <button class={classes.submit} type="submit">
         Share
       </button>
-      <textarea class={classes.full} required onInput={onTextareaChange}>
+      <textarea
+        class={classes.full}
+        required
+        onInput={(e) => setCode(e.currentTarget.value)}
+      >
         {code}
       </textarea>
     </form>
