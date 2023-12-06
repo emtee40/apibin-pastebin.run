@@ -9,7 +9,6 @@
 	"dependencies": {
 		"history": "^4.10.1",
 		"preact": "^10.13.1",
-		"preact-render-to-string": "^6.3.1",
 		"preact-router": "^4.1.2"
 	},
 	"devDependencies": {
