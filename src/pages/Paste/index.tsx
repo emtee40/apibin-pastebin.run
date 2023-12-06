@@ -17,18 +17,30 @@ export function Paste({ id }: { id: string }) {
   };
   useEffect(() => {
     const controller = new AbortController();
-    (async () =>
-      setCode(
-        await (
-          await fetch(`${baseUrl}${id}.txt`, { signal: controller.signal })
-        ).text(),
-      ))();
+    (async () => {
+      let text;
+      try {
+        const response = await fetch(`${baseUrl}${id}.txt`, {
+          signal: controller.signal,
+        });
+        text = await response.text();
+      } catch (e) {
+        if (e instanceof DOMException && e.name === "AbortError") {
+          return;
+        }
+        throw e;
+      }
+      setCode(text);
+    })();
+
     return () => controller.abort();
   }, [id, setCode]);
   return (
     <div>
       <div>
-        Share link: <input readonly value={getLink()} />{" "}
+        <label>
+          Share link: <input readonly value={getLink()} />
+        </label>{" "}
         <button onClick={copyLink}>Copy link</button>
       </div>
       {code === null ? (
