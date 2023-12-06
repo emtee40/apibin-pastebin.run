@@ -2,11 +2,11 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-import "./style.css";
+import classes from "./style.module.css";
 
 export function About() {
   return (
-    <div class="about">
+    <div class={classes.about}>
       <p>
         This is a demonstration of{" "}
         <a href="https://pastebin.run">pastebin.run</a>'s API. Every API used by

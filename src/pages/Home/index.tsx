@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-import "./style.css";
+import classes from "./style.module.css";
 import baseUrl from "../../base-url";
 import { useEffect, useState } from "preact/hooks";
 import { route } from "preact-router";
@@ -56,10 +56,10 @@ export function Home() {
           <option>Never</option>
         </select>
       </label>
-      <button class="submit" type="submit">
+      <button class={classes.submit} type="submit">
         Share
       </button>
-      <textarea class="full" required onInput={onTextareaChange}>
+      <textarea class={classes.full} required onInput={onTextareaChange}>
         {code}
       </textarea>
     </form>

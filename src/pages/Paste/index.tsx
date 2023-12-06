@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-import "./style.css";
+import classes from "./style.module.css";
 import baseUrl from "../../base-url";
 import { useEffect, useState } from "preact/hooks";
 
@@ -34,7 +34,7 @@ export function Paste({ id }) {
       {code === null ? (
         "Loading…"
       ) : (
-        <pre class="pre">
+        <pre class={classes.pre}>
           <code>{code}</code>
         </pre>
       )}
