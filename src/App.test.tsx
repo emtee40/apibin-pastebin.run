@@ -7,7 +7,7 @@ import { screen, render } from "@testing-library/preact";
 import App from "./App";
 import "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
-import { server } from "./test/setup";
+import { server } from "./test/server";
 import { HttpResponse, http } from "msw";
 
 describe("App", () => {
