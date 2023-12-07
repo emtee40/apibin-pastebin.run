@@ -14,11 +14,8 @@ import "@testing-library/jest-dom";
 describe("Paste", () => {
   it("loads pastes", async () => {
     render(<Paste id="hello" />);
-    expect(await screen.findByText("Hello, world!")).toBeInTheDocument();
-  });
-  it("shows loading message", async () => {
-    render(<Paste id="hello" />);
     await waitForElementToBeRemoved(() => screen.queryByText("Loading…"));
+    expect(screen.getByText("Hello, world!")).toBeInTheDocument();
   });
   it("shows share link", () => {
     render(<Paste id="hello" />);
