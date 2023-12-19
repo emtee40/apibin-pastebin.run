@@ -1,4 +1,25 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended"]
+  "extends": ["config:recommended"],
+  "packageRules": [
+    {
+      "matchPackageNames": [
+        "@testing-library/jest-dom",
+        "@testing-library/preact",
+        "@testing-library/user-event",
+        "@typescript-eslint/eslint-plugin",
+        "@typescript-eslint/parser",
+        "eslint",
+        "eslint-config-preact",
+        "jsdom",
+        "msw",
+        "prettier",
+        "typescript",
+        "vitest",
+        "fsfe/reuse",
+        "node"
+      ],
+      "automerge": true
+    }
+  ]
 }
