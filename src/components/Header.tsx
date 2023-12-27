@@ -18,7 +18,7 @@ export function Header() {
         <Link activeClassName={classes.active} href="/about">
           About
         </Link>
-        <a href="https://github.com/pastebinrun/apibin">Source code</a>
+        <a href="https://codeberg.org/xfix/apibin">Source code</a>
       </nav>
     </header>
   );

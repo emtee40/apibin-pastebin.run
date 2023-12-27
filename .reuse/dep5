@@ -1,7 +1,7 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: apibin
 Upstream-Contact: Kamila Borowska <kamila@borowska.pw>
-Source: https://github.com/pastebinrun/apibin
+Source: https://codeberg.org/xfix/apibin
 
 # Sample paragraph, commented out:
 #
