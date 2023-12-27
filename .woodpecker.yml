@@ -54,6 +54,7 @@ steps:
       git_config_name: Kamila Borowska
       git_config_email: kamila@borowska.pw
     depends_on:
+      - reuse
       - prettier
       - eslint
       - tsc
