@@ -13,21 +13,52 @@ steps:
     image: fsfe/reuse:2.1.0@sha256:888418362aa2a8ebea12d8dbfb41fa8eeabd0c423f42df7e3968af4cbb8d2ef1
     commands:
       - reuse lint
-  build:
+  npm-ci:
     image: node:21.5.0@sha256:b632a1ec41a0927d19a432c525641b9a4451251d0b0b63f1d764810a562ea4e1
     commands:
       - npm ci
+  prettier:
+    image: node:21.5.0@sha256:b632a1ec41a0927d19a432c525641b9a4451251d0b0b63f1d764810a562ea4e1
+    commands:
       - npx prettier --check .
+    depends_on:
+      - npm-ci
+  eslint:
+    image: node:21.5.0@sha256:b632a1ec41a0927d19a432c525641b9a4451251d0b0b63f1d764810a562ea4e1
+    commands:
       - npx eslint .
+    depends_on:
+      - npm-ci
+  tsc:
+    image: node:21.5.0@sha256:b632a1ec41a0927d19a432c525641b9a4451251d0b0b63f1d764810a562ea4e1
+    commands:
       - npx tsc
+    depends_on:
+      - npm-ci
+  vitest:
+    image: node:21.5.0@sha256:b632a1ec41a0927d19a432c525641b9a4451251d0b0b63f1d764810a562ea4e1
+    commands:
       - npx vitest
+    depends_on:
+      - npm-ci
+  build:
+    image: node:21.5.0@sha256:b632a1ec41a0927d19a432c525641b9a4451251d0b0b63f1d764810a562ea4e1
+    commands:
       - npm run build
+    depends_on:
+      - npm-ci
   deploy:
     image: kamilaborowska/plugin-codeberg-pages-deploy:0.2.0@sha256:f9d9ae55e6876ff55ae61019dd008fa4fc308e6e5c611e165ac9f98a4b2d1b38
     settings:
       folder: dist
       git_config_name: Kamila Borowska
       git_config_email: kamila@borowska.pw
+    depends_on:
+      - prettier
+      - eslint
+      - tsc
+      - vitest
+      - build
     secrets:
       - plugin_ssh_key
     when:
