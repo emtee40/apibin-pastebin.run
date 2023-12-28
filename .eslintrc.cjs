@@ -12,4 +12,5 @@ module.exports = {
   plugins: ["@typescript-eslint"],
   root: true,
   settings: { jest: { version: 29 } },
+  ignorePatterns: ["dist"],
 };
