@@ -53,6 +53,8 @@ steps:
       folder: dist
       git_config_name: Kamila Borowska
       git_config_email: kamila@borowska.pw
+      ssh_key:
+        from_secret: plugin_ssh_key
     depends_on:
       - reuse
       - prettier
@@ -60,8 +62,6 @@ steps:
       - tsc
       - vitest
       - build
-    secrets:
-      - plugin_ssh_key
     when:
       - event: push
         branch:
