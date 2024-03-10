@@ -10,39 +10,39 @@ when:
 
 steps:
   reuse:
-    image: fsfe/reuse:3.0.0@sha256:be7bf9e0bbe117c7905ce646f60af9c8e9f9de3fc5f6c673d09934adac06c35c
+    image: fsfe/reuse:3.0.1@sha256:f8f4851e199f44a0e827ea7d248228e2045e26750707e4f5f1b5875caf4ac51a
     commands:
       - reuse lint
   npm-ci:
-    image: node:21.6.0@sha256:fa661276e853ac1772db6f67027f8b3e5ef35c707b304da07ab0874a898cd1b9
+    image: node:21.7.0@sha256:4eeb6773d5dca01f09c8caadf3fe4adffbc24e3ed8500061f1f4cc1bdbad8804
     commands:
       - npm ci
   prettier:
-    image: node:21.6.0@sha256:fa661276e853ac1772db6f67027f8b3e5ef35c707b304da07ab0874a898cd1b9
+    image: node:21.7.0@sha256:4eeb6773d5dca01f09c8caadf3fe4adffbc24e3ed8500061f1f4cc1bdbad8804
     commands:
       - npx prettier --check .
     depends_on:
       - npm-ci
   eslint:
-    image: node:21.6.0@sha256:fa661276e853ac1772db6f67027f8b3e5ef35c707b304da07ab0874a898cd1b9
+    image: node:21.7.0@sha256:4eeb6773d5dca01f09c8caadf3fe4adffbc24e3ed8500061f1f4cc1bdbad8804
     commands:
       - npx eslint .
     depends_on:
       - npm-ci
   tsc:
-    image: node:21.6.0@sha256:fa661276e853ac1772db6f67027f8b3e5ef35c707b304da07ab0874a898cd1b9
+    image: node:21.7.0@sha256:4eeb6773d5dca01f09c8caadf3fe4adffbc24e3ed8500061f1f4cc1bdbad8804
     commands:
       - npx tsc
     depends_on:
       - npm-ci
   vitest:
-    image: node:21.6.0@sha256:fa661276e853ac1772db6f67027f8b3e5ef35c707b304da07ab0874a898cd1b9
+    image: node:21.7.0@sha256:4eeb6773d5dca01f09c8caadf3fe4adffbc24e3ed8500061f1f4cc1bdbad8804
     commands:
       - npx vitest
     depends_on:
       - npm-ci
   build:
-    image: node:21.6.0@sha256:fa661276e853ac1772db6f67027f8b3e5ef35c707b304da07ab0874a898cd1b9
+    image: node:21.7.0@sha256:4eeb6773d5dca01f09c8caadf3fe4adffbc24e3ed8500061f1f4cc1bdbad8804
     commands:
       - npm run build
     depends_on:
